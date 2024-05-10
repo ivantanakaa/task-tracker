@@ -1,8 +1,39 @@
+"use client";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
+interface Task {
+  title: string;
+  completed: boolean;
+}
+
 export default function Form() {
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  useEffect(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    if (savedTasks) {
+      setTasks(JSON.parse(savedTasks));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  const addTask = (task: Task) => {
+    setTasks([...tasks, task]);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    addTask({ title: e.target.task.value, completed: false });
+    e.target.task.value = "";
+  };
   return (
     <>
-      <h1 className="text-2xl">Task Tracker</h1>
-      <form>
+      <Image src={"/logo.png"} alt="logo" width={300} height={40} />
+      <form onSubmit={handleSubmit}>
         <input
           name="task"
           type="text"
