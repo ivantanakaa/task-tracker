@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -11,14 +12,17 @@ export default function Form() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
-    const savedTasks = localStorage.getItem("tasks");
+    const savedTasks =
+      typeof window !== undefined
+        ? window?.localStorage?.getItem("tasks")
+        : false;
     if (savedTasks) {
       setTasks(JSON.parse(savedTasks));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+      localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   const addTask = (task: Task) => {
@@ -30,6 +34,13 @@ export default function Form() {
     addTask({ title: e.target.task.value, completed: false });
     e.target.task.value = "";
   };
+
+  const toggleTaskCompletion = (index: number) => {
+    const updatedTasks = [...tasks];
+    updatedTasks[index].completed = !updatedTasks[index].completed;
+    setTasks(updatedTasks);
+  };
+
   return (
     <>
       <Image src={"/logo.png"} alt="logo" width={300} height={40} />
@@ -47,6 +58,25 @@ export default function Form() {
           Add Task
         </button>
       </form>
+      <ul>
+        {tasks.map((task, index) => (
+          <li
+            key={index}
+            className={
+              "flex justify-center align-middle items-center gap-2 " +
+              (task.completed && "line-through")
+            }
+          >
+            <input
+              type="checkbox"
+              onChange={() => toggleTaskCompletion(index)}
+              checked={task.completed}
+            />
+            {task.title}
+            {/* <button onClick={() => deleteTask(index)}>Delete</button> */}
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
