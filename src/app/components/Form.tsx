@@ -22,7 +22,7 @@ export default function Form() {
   }, []);
 
   useEffect(() => {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   const addTask = (task: Task) => {
@@ -42,23 +42,25 @@ export default function Form() {
   };
 
   return (
-    <>
-      <Image src={"/logo.png"} alt="logo" width={300} height={40} />
-      <form onSubmit={handleSubmit}>
-        <input
-          name="task"
-          type="text"
-          placeholder="Input New Task"
-          className="p-2 pl-5 rounded-l-full"
-        />
-        <button
-          type="submit"
-          className="hover:bg-[#cf7f7f] bg-[#ff7575] text-white font-bold py-2 px-4 rounded-r-full"
-        >
-          Add Task
-        </button>
-      </form>
-      <ul>
+    <div className="flex flex-col justify-center items-center gap-16">
+      <div className="flex flex-col justify-center items-center gap-8">
+        <Image src={"/logo.png"} alt="logo" width={300} height={40} />
+        <form onSubmit={handleSubmit}>
+          <input
+            name="task"
+            type="text"
+            placeholder="Input New Task"
+            className="p-2 pl-5 rounded-l-full"
+          />
+          <button
+            type="submit"
+            className="hover:bg-[#cf7f7f] bg-[#ff7575] text-white font-bold py-2 px-4 rounded-r-full"
+          >
+            Add Task
+          </button>
+        </form>
+      </div>
+      <ul className="flex flex-col justify-start items-start w-[300px]">
         {tasks.map((task, index) => (
           <li
             key={index}
@@ -77,6 +79,6 @@ export default function Form() {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
