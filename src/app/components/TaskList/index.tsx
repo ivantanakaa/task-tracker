@@ -8,8 +8,9 @@ export default function TaskList() {
   };
   return (
     <ul className="flex flex-col justify-start items-start w-[300px] mt-6">
-      {tasks.toReversed().map((task) => (
+      {tasks.toReversed().map((task, index) => (
         <TaskRow
+          key={index}
           task={task}
           onDelete={removeTask}
           onToggleComplete={toggleCompletion}
