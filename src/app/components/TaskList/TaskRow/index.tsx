@@ -14,16 +14,13 @@ export default function TaskRow(props: TaskRowInterface) {
   return (
     <li
       key={id}
+      onClick={() => onToggleComplete(id)}
       className={
-        "flex justify-center align-middle items-center gap-2 " +
+        "flex justify-center align-middle items-center gap-2 p-2 cursor-pointer " +
         (completed && "line-through")
       }
     >
-      <input
-        type="checkbox"
-        onChange={() => onToggleComplete(id)}
-        checked={completed}
-      />
+      <input type="checkbox" className="cursor-pointer" checked={completed} />
       {name}
 
       <button onClick={() => onDelete(id)}>
