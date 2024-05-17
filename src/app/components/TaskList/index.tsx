@@ -1,3 +1,5 @@
+"use client";
+
 import { useTasks } from "@/app/hooks/useTasks";
 import TaskRow from "./TaskRow";
 

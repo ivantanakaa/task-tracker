@@ -1,7 +1,6 @@
 "use client";
 
 import { useTasks } from "@/app/hooks/useTasks";
-import Image from "next/image";
 
 export default function Form() {
   const { addTask } = useTasks();
@@ -15,7 +14,6 @@ export default function Form() {
   return (
     <div className="flex flex-col justify-center items-center gap-16">
       <div className="flex flex-col justify-center items-center gap-8">
-        <Image src={"/logo.png"} alt="logo" width={300} height={40} />
         <form onSubmit={handleSubmit}>
           <input
             name="task"
