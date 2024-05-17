@@ -1,11 +1,11 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { Task } from "./types";
+import { Priority, Task } from "./types";
 
 interface TasksContextInterface {
   tasks: Task[];
-  addTask: (taskName: string) => void;
+  addTask: (name: string, priority: Priority) => void;
   removeTask: (taskId: number) => void;
   toggleTask: (taskId: number) => void;
 }
@@ -36,10 +36,11 @@ export function TasksProvider({ children }) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  const addTask = (taskName: string) => {
+  const addTask = (name: string, priority: Priority) => {
     const task: Task = {
       id: tasks.length + 1,
-      name: taskName,
+      name: name,
+      priority: priority,
       completed: false,
     };
 

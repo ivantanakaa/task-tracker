@@ -9,7 +9,7 @@ export default function TaskList() {
     toggleTask(id);
   };
   return (
-    <ul className="flex flex-col justify-start items-start w-[300px] mt-6">
+    <ul className="flex flex-col justify-start items-start w-[364px] mt-6">
       {tasks.toReversed().map((task, index) => (
         <TaskRow
           key={index}
