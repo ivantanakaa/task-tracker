@@ -29,7 +29,7 @@ export default function Form() {
             onChange={(e) => setPriority(e.target.value as Priority)}
           >
             <option value={"high"}>High</option>
-            <option value={"moderate"}>Moderate</option>
+            <option value={"mid"}>Mid</option>
             <option value={"low"}>Low</option>
           </select>
           <PriorityPill type={priority} />

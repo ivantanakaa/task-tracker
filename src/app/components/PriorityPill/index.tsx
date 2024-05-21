@@ -12,10 +12,10 @@ export default function PriorityPill({ type }: PriorityPillInterface) {
           High
         </div>
       );
-    case "moderate":
+    case "mid":
       return (
         <div className="text-xs rounded-full border-2 border-[#FFA500] px-2 no-underline bg-white text-[#FFA500]">
-          Moderate
+          Mid
         </div>
       );
     case "low":
