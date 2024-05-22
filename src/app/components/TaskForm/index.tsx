@@ -21,11 +21,11 @@ export default function Form() {
         onSubmit={handleSubmit}
         className="flex flex-row justify-center items-center"
       >
-        <div className="relative pl-3 flex rounded-l-full justify-left items-center bg-white h-[40px] min-w-[95px]">
+        <div className="relative pl-3 flex rounded-l-full justify-left items-center bg-white h-[40px] min-w-[80px]">
           <select
             name="priority"
             value={priority}
-            className="opacity-0 absolute h-full w-[80px]"
+            className="opacity-0 absolute h-full w-[70px]"
             onChange={(e) => setPriority(e.target.value as Priority)}
           >
             <option value={"high"}>High</option>
